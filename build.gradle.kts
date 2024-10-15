@@ -19,8 +19,11 @@ repositories {
 }
 
 dependencies {
+	//api e.g) @RestController
+	implementation("org.springframework.boot:spring-boot-starter-web")
 	//mongodb
-	implementation = implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
 
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
