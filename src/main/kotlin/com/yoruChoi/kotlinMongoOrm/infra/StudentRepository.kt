@@ -31,12 +31,12 @@ class StudentRepositoryAggregationImpl : StudentRepositoryAggregation {
         studentId: ObjectId,
     ): Optional<Student> {
         val matchStage = Aggregation.match(
-            Criteria.where(MongoField.STUDENT_ID).`is`(studentId)
+            Criteria.where(MongoField.ID).`is`(studentId)
         )
         val lookupStage = Aggregation.lookup(
             MongoCollection.EXAM_GRADE, // collection name
-            MongoField.STUDENT_ID, // localField
-            MongoField.ID, // foreignField
+            MongoField.ID, // localField
+            MongoField.STUDENT_ID, // foreignField
             MongoCollection.EXAM_GRADE.snakeToCamel() // as
         )
         val unwindStage = Aggregation.unwind(MongoCollection.EXAM_GRADE.snakeToCamel(), true)

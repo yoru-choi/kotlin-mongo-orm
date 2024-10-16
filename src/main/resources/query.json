@@ -1,4 +1,13 @@
 {
-  "name": "yoru",
-  "emailAddress": "yoru@test.com"
+  "createStudent": {
+    "name": "yoru",
+    "emailAddress": "yoru@test.com"
+  },
+  "createExamGrade": {
+    "studentId": "670f1ddbe6252478997a28e9",
+    "math": "A",
+    "english": "B",
+    "science": "B",
+    "history": "A"
+  }
 }

@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 @Document(collection = MongoCollection.EXAM_GRADE)
 data class ExamGrade(
     @Id val id: ObjectId = ObjectId.get(),
-    @Field(MongoField.STUDENT_ID) var studentId: String,
+    @Field(MongoField.STUDENT_ID) var studentId: ObjectId,
     @Field(MongoField.MATH) var math: String,
     @Field(MongoField.ENGLISH) val english: String,
     @Field(MongoField.SCIENCE) val science: String,
