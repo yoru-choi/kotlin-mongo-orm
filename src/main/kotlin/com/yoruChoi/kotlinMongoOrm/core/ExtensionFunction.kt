@@ -1,4 +1,4 @@
-package com.yoruChoi.kotlinMongoOrm
+package com.yoruChoi.kotlinMongoOrm.core
 
 
 fun String.snakeToCamel(): String {

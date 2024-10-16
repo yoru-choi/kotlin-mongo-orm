@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class KotlinMongoOrmApplication
 
 fun main(args: Array<String>) {
-	runApplication<KotlinMongoOrmApplication>(*args)
+    runApplication<KotlinMongoOrmApplication>(*args)
 }

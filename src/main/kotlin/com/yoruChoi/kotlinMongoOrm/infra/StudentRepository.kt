@@ -1,8 +1,8 @@
-package com.yoruChoi.kotlinMongoOrm.repository
+package com.yoruChoi.kotlinMongoOrm.infra
 
-import com.yoruChoi.kotlinMongoOrm.MongoCollection
-import com.yoruChoi.kotlinMongoOrm.MongoField
-import com.yoruChoi.kotlinMongoOrm.snakeToCamel
+import com.yoruChoi.kotlinMongoOrm.core.MongoCollection
+import com.yoruChoi.kotlinMongoOrm.core.MongoField
+import com.yoruChoi.kotlinMongoOrm.core.snakeToCamel
 import org.bson.types.ObjectId
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.core.MongoTemplate
@@ -13,35 +13,29 @@ import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 import java.util.*
 
-interface StudentRepository : MongoRepository<Student, ObjectId>, ExamGradeRepositoryAggregation {
-
+interface StudentRepository : MongoRepository<Student, ObjectId>, StudentRepositoryAggregation {
 }
 
-
-interface ExamGradeRepositoryAggregation {
-
-    fun findByStudentIdAndOrganizationIdAndStateWithOrganization(
+interface StudentRepositoryAggregation {
+    fun findByStudentIdWithExamGrade(
         studentId: ObjectId,
-        organizationId: ObjectId,
-    ): Optional<ExamGrade>
+    ): Optional<Student>
 }
 
 @Repository
-class ExamGradeRepositoryAggregationImpl : ExamGradeRepositoryAggregation {
+class StudentRepositoryAggregationImpl : StudentRepositoryAggregation {
     @Autowired
     private lateinit var mongoTemplate: MongoTemplate
 
-
-    override fun findByStudentIdAndOrganizationIdAndStateWithOrganization(
+    override fun findByStudentIdWithExamGrade(
         studentId: ObjectId,
-        organizationId: ObjectId,
-    ): Optional<ExamGrade> {
+    ): Optional<Student> {
         val matchStage = Aggregation.match(
-            Criteria.where(MongoField.USER_ID).`is`(studentId)
+            Criteria.where(MongoField.STUDENT_ID).`is`(studentId)
         )
         val lookupStage = Aggregation.lookup(
             MongoCollection.EXAM_GRADE, // collection name
-            MongoField.EXAM_GRADE_ID, // localField
+            MongoField.STUDENT_ID, // localField
             MongoField.ID, // foreignField
             MongoCollection.EXAM_GRADE.snakeToCamel() // as
         )
@@ -51,9 +45,9 @@ class ExamGradeRepositoryAggregationImpl : ExamGradeRepositoryAggregation {
             lookupStage,
             unwindStage
         )
-        val results: AggregationResults<ExamGrade> =
+        val results: AggregationResults<Student> =
             mongoTemplate.aggregate(
-                aggregation, MongoCollection.STUDENT, ExamGrade::class.java
+                aggregation, MongoCollection.STUDENT, Student::class.java
             )
         return Optional.ofNullable(results.mappedResults.firstOrNull())
     }

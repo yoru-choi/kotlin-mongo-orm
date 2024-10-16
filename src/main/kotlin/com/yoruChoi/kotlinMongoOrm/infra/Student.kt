@@ -1,7 +1,7 @@
-package com.yoruChoi.kotlinMongoOrm.repository
+package com.yoruChoi.kotlinMongoOrm.infra
 
-import com.yoruChoi.kotlinMongoOrm.MongoCollection
-import com.yoruChoi.kotlinMongoOrm.MongoField
+import com.yoruChoi.kotlinMongoOrm.core.MongoCollection
+import com.yoruChoi.kotlinMongoOrm.core.MongoField
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -15,5 +15,7 @@ data class Student(
     @Field(MongoField.EMAIL_ADDRESS) var emailAddress: String,
     @Field(MongoField.IS_ACTIVATED) val isActivated: Boolean = true,
     @Field(MongoField.CREATED_AT) var createdAt: LocalDateTime = LocalDateTime.now(),
+
+    val examGrade: ExamGrade? = null
 )
 
