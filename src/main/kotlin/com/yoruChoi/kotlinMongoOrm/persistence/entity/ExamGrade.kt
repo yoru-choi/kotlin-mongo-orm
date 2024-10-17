@@ -1,4 +1,4 @@
-package com.yoruChoi.kotlinMongoOrm.infra
+package com.yoruChoi.kotlinMongoOrm.persistence.entity
 
 import com.yoruChoi.kotlinMongoOrm.core.MongoCollection
 import com.yoruChoi.kotlinMongoOrm.core.MongoField
@@ -8,14 +8,14 @@ import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field
 import java.time.LocalDateTime
 
-@Document(collection = MongoCollection.STUDENT)
-data class Student(
+
+@Document(collection = MongoCollection.EXAM_GRADE)
+data class ExamGrade(
     @Id val id: ObjectId = ObjectId.get(),
-    @Field(MongoField.NAME) var name: String,
-    @Field(MongoField.EMAIL_ADDRESS) var emailAddress: String,
-    @Field(MongoField.IS_ACTIVATED) val isActivated: Boolean = true,
+    @Field(MongoField.STUDENT_ID) var studentId: ObjectId,
+    @Field(MongoField.MATH) var math: String,
+    @Field(MongoField.ENGLISH) val english: String,
+    @Field(MongoField.SCIENCE) val science: String,
+    @Field(MongoField.HISTORY) val history: String,
     @Field(MongoField.CREATED_AT) var createdAt: LocalDateTime = LocalDateTime.now(),
-
-    val examGrade: ExamGrade? = null
 )
-

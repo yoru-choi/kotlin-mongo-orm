@@ -1,5 +1,6 @@
-package com.yoruChoi.kotlinMongoOrm.infra
+package com.yoruChoi.kotlinMongoOrm.persistence
 
+import com.yoruChoi.kotlinMongoOrm.persistence.entity.ExamGrade
 import org.bson.types.ObjectId
 import org.springframework.data.mongodb.repository.MongoRepository
 

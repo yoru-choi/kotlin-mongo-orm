@@ -1,7 +1,7 @@
 package com.yoruChoi.kotlinMongoOrm.business
 
-import com.yoruChoi.kotlinMongoOrm.infra.Student
-import com.yoruChoi.kotlinMongoOrm.infra.StudentRepository
+import com.yoruChoi.kotlinMongoOrm.persistence.StudentRepository
+import com.yoruChoi.kotlinMongoOrm.persistence.entity.Student
 import org.bson.types.ObjectId
 import org.springframework.stereotype.Service
 

@@ -1,8 +1,9 @@
-package com.yoruChoi.kotlinMongoOrm.infra
+package com.yoruChoi.kotlinMongoOrm.persistence
 
 import com.yoruChoi.kotlinMongoOrm.core.MongoCollection
 import com.yoruChoi.kotlinMongoOrm.core.MongoField
 import com.yoruChoi.kotlinMongoOrm.core.snakeToCamel
+import com.yoruChoi.kotlinMongoOrm.persistence.entity.Student
 import org.bson.types.ObjectId
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.core.MongoTemplate

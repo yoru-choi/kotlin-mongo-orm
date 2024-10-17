@@ -1,7 +1,7 @@
 package com.yoruChoi.kotlinMongoOrm.business
 
-import com.yoruChoi.kotlinMongoOrm.infra.ExamGrade
-import com.yoruChoi.kotlinMongoOrm.infra.ExamGradeRepository
+import com.yoruChoi.kotlinMongoOrm.persistence.ExamGradeRepository
+import com.yoruChoi.kotlinMongoOrm.persistence.entity.ExamGrade
 import org.bson.types.ObjectId
 import org.springframework.stereotype.Service
 
