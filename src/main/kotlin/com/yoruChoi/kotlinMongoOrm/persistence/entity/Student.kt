@@ -18,22 +18,3 @@ data class Student(
 
     val examGrade: ExamGrade? = null
 )
-
-//class Test {
-//
-//    @PostConstruct
-//    fun test(T: class) {
-//        println(T.class.memberProperties.foreach{property -> println(property.name)}
-//    }
-//}
-
-//{
-//    companion object {
-//        init {
-//            val variableName = Student::class.memberProperties
-//                .firstOrNull { it.name == MongoCollection.EXAM_GRADE.snakeToCamel() }
-//            if (variableName == null) throw Error("examGrade field name is not same MongoCollection.EXAM_GRADE.snakeToCamel()")
-//            println("test")
-//        }
-//    }
-//}

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service
 class StudentService(
     private val studentRepository: StudentRepository,
 ) {
-
     fun getStudents(): List<GetStudentsServiceOutputDto> {
         val students =
             studentRepository.findAll().ifEmpty { throw Error("") }
@@ -17,7 +16,6 @@ class StudentService(
             GetStudentsServiceOutputDto(id = it.id.toString(), name = it.name, emailAddress = it.emailAddress)
         }
     }
-
 
     fun getStudent(studentId: String): GetStudentServiceOutputDto {
         val student =
@@ -34,7 +32,6 @@ class StudentService(
             history = student.examGrade.history,
         )
     }
-
 
     fun createStudent(name: String, emailAddress: String) {
         val student = Student(name = name, emailAddress = emailAddress)

@@ -16,13 +16,6 @@ import org.springframework.web.bind.annotation.RestController
 class ExamGradeController(
     private val examGradeService: ExamGradeService,
 ) {
-//    @GetMapping("")
-//    fun getExamGrades(
-//    ): ResponseEntity<List<GetStudentsServiceOutputDto>> {
-//        val outputService = studentService.getStudents()
-//        return ResponseEntity(outputService, HttpStatus.OK)
-//    }
-
     @PostMapping("")
     fun createExamGrade(
         @RequestBody(required = true) requestBody: CreateExamGradeRequestBody,

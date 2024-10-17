@@ -14,17 +14,17 @@ import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 import java.util.*
 
-interface StudentRepository : MongoRepository<Student, ObjectId>, StudentRepositoryAggregation {
+interface StudentRepository : MongoRepository<Student, ObjectId>, StudentAggregationRepository {
 }
 
-interface StudentRepositoryAggregation {
+interface StudentAggregationRepository {
     fun findByStudentIdWithExamGrade(
         studentId: ObjectId,
     ): Optional<Student>
 }
 
 @Repository
-class StudentRepositoryAggregationImpl : StudentRepositoryAggregation {
+class StudentAggregationRepositoryImpl : StudentAggregationRepository {
     @Autowired
     private lateinit var mongoTemplate: MongoTemplate
 
@@ -46,10 +46,10 @@ class StudentRepositoryAggregationImpl : StudentRepositoryAggregation {
             lookupStage,
             unwindStage
         )
-        val results: AggregationResults<Student> =
+        val aggregationResults: AggregationResults<Student> =
             mongoTemplate.aggregate(
                 aggregation, MongoCollection.STUDENT, Student::class.java
             )
-        return Optional.ofNullable(results.mappedResults.firstOrNull())
+        return Optional.ofNullable(aggregationResults.mappedResults.firstOrNull())
     }
 }

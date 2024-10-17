@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service
 class ExamGradeService(
     private val examGradeRepository: ExamGradeRepository,
 ) {
-
     fun createExamGrade(param: CreateExamGradeServiceInputDto) {
         val examGrade = ExamGrade(
             studentId = ObjectId(param.studentId),
@@ -20,7 +19,6 @@ class ExamGradeService(
         )
         examGradeRepository.save(examGrade)
     }
-
 }
 
 data class CreateExamGradeServiceInputDto(
